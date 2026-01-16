@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h3>Profile Settings</h3>
+
+<form method="post" class="mt-4">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Username</label>
+        <input type="text" class="form-control"
+               value="{{ request.user.username }}" disabled>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control"
+               value="{{ request.user.email }}">
+    </div>
+
+    <div class="mb-3">
+        <label>First name</label>
+        <input type="text" name="first_name" class="form-control"
+               value="{{ request.user.first_name }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Last name</label>
+        <input type="text" name="last_name" class="form-control"
+               value="{{ request.user.last_name }}">
+    </div>
+
+    <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-dark">
+            Save Changes
+        </button>
+
+        <a href="{% url 'change_password' %}"
+           class="btn btn-outline-danger">
+            Change Password
+        </a>
+    </div>
+</form>
+{% endblock %}
